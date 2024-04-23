@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -21,15 +20,15 @@ public class MainController {
     private final Random random = new Random();
 
     //nacteni souboru txt
-    private static List<String> readAllLines(String resource)throws IOException {
+    private static List<String> readAllLines(String resource) throws IOException {
         //Soubory z resources se získávají pomocí classloaderu. Nejprve musíme získat aktuální classloader.
-        ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
         //Pomocí metody getResourceAsStream() získáme z classloaderu InpuStream, který čte z příslušného souboru.
         //Následně InputStream převedeme na BufferedRead, který čte text v kódování UTF-8
-        try(InputStream inputStream=classLoader.getResourceAsStream(resource)) {
+        try (InputStream inputStream = classLoader.getResourceAsStream(resource)) {
             assert inputStream != null;
-            try(BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))){
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
 
                 //Metoda lines() vrací stream řádků ze souboru. Pomocí kolektoru převedeme Stream<String> na List<String>.
                 return reader
@@ -48,10 +47,10 @@ public class MainController {
         String nahodnyCitat = readAllLines("citaty.txt").get(nahodneCislo);
 
         //obrazky
-        List<String> seznamObrazku=List.of("RFHFV7lVQBY","KDYGrlXsHtQ","VfXZg_-8f6A","npxXWgQ33ZQ", "LwvifzvZeao", "u7WazOBoALQ", "uHdiSKbQIME", "mFPJXEQfb9M");
+        List<String> seznamObrazku = List.of("RFHFV7lVQBY", "KDYGrlXsHtQ", "VfXZg_-8f6A", "npxXWgQ33ZQ", "LwvifzvZeao", "u7WazOBoALQ", "uHdiSKbQIME", "mFPJXEQfb9M");
         String nahodnyObrazek = seznamObrazku.get(nahodneCislo);
-        //volani sablony
 
+        //volani sablony
         ModelAndView result = new ModelAndView("citatDne");
 
         //generovani citatu a pozadi
