@@ -51,9 +51,12 @@ public class MainController {
         List<String> seznamObrazku=List.of("RFHFV7lVQBY","KDYGrlXsHtQ","VfXZg_-8f6A","npxXWgQ33ZQ", "LwvifzvZeao", "u7WazOBoALQ", "uHdiSKbQIME", "mFPJXEQfb9M");
         String nahodnyObrazek = seznamObrazku.get(nahodneCislo);
         //volani sablony
+
         ModelAndView result = new ModelAndView("citatDne");
 
         //generovani citatu a pozadi
-        return result.addObject("citat", nahodnyCitat);
+        result.addObject("citat", nahodnyCitat);
+        result.addObject("pozadi", nahodnyObrazek);
+        return result;
     }
 }
